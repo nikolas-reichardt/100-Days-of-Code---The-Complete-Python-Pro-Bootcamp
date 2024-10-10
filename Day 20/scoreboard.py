@@ -12,4 +12,8 @@ class Scores():
     def write_score(self):
         self.score += 1
         self.scoreboard.clear()
-        self.scoreboard.write(f"Your score: {self.score}", move=False, align='center', font=('Arial', 14, 'normal'))
+        self.scoreboard.write(f"Your score: {self.score}", move=False, align='center', font=('Arial', 20, 'normal'))
+
+    def clear_scoreboard(self):
+        # Methode zum Löschen des Scoreboards
+        self.scoreboard.clear()

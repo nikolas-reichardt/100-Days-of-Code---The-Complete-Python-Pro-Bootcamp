@@ -9,15 +9,17 @@ class Fooder(Turtle):
         #self.circle = Turtle()
         self.shape("circle")
         self.color("red")
+        self.score_on_board = Scores()
         self.create_points()
-    score_on_board = Scores()
 
 
     def create_points(self):
         self.penup()
         self.setposition(random.randint(-260,260),random.randint(-260,260))
         self.score_on_board.write_score()
-        
+
+    def clear_points(self):
+        self.score_on_board.clear_scoreboard()  # Aufruf der Methode, die das Scoreboard clearen soll
 
     def check_snake_pos(self, x_cords, y_cords):
         # Calculate the distance between the snake's head and the circle
@@ -28,3 +30,5 @@ class Fooder(Turtle):
         # If the distance is less than a certain threshold, trigger point creation
         if distance < 20:  # Assuming 20 is a reasonable threshold based on your snake size
             self.create_points()
+            return True
+            

@@ -6,7 +6,16 @@ class Snakes():
         self.snake = []
         self.create_snake()
 
-    
+    def add_snake_body(self):
+        new_snake_body = Snake()
+        new_snake_body.color("white")
+        new_snake_body.shape("square")
+        new_snake_body.penup()
+
+        # Position the new segment at the location of the last segment
+        last_segment = self.snake[-1]  # Get the last segment of the snake
+        new_snake_body.goto(last_segment.xcor(), last_segment.ycor())  # Place the new segment behind the last segment
+        self.snake.append(new_snake_body)
 
     def create_snake(self):  
         for i in range(3):
@@ -31,14 +40,19 @@ class Snakes():
             self.snake[i].goto(new_x, new_y) 
         self.snake[0].forward(20)
 
-    def move_left(self):
-        self.snake[0].left(90)
+ # Direction control methods
+    def go_up(self):
+        if self.snake[0].heading() != 270:  # Prevent going directly opposite
+            self.snake[0].setheading(90)    # Set heading to "up"
 
-    def move_right(self):
-        self.snake[0].right(90)
+    def go_down(self):
+        if self.snake[0].heading() != 90:
+            self.snake[0].setheading(270)   # Set heading to "down"
 
-    def move_clear(self):
-        self.snake[0].clear()
-        self.snake[0].penup()
-        self.snake[0].home()
-        self.snake[0].pendown()
+    def go_left(self):
+        if self.snake[0].heading() != 0:
+            self.snake[0].setheading(180)   # Set heading to "left"
+
+    def go_right(self):
+        if self.snake[0].heading() != 180:
+            self.snake[0].setheading(0)     # Set heading to "right"
